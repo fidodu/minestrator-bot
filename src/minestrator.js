@@ -10,10 +10,11 @@ class MinestratorError extends Error {
 
 class MinestratorClient {
   constructor(apiKey) {
-    const encoded = Buffer.from(apiKey).toString("base64");
-    this.headers = {
-      Authorization: `Bearer ${encoded}`,
-      "Content-Type": "application/json",
+  this.headers = {
+    Authorization: `Bearer ${apiKey.trim()}`,
+    "Content-Type": "application/json",
+  };
+}
     };
   }
 
