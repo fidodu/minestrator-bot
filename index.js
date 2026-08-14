@@ -102,7 +102,6 @@ async function main() {
 
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
-      console.log("Commande Discord reçue :", interaction.commandName);
 
     try {
       if (interaction.commandName === "start") {
