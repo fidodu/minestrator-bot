@@ -10,11 +10,9 @@ class MinestratorError extends Error {
 
 class MinestratorClient {
   constructor(apiKey) {
-  this.headers = {
-    Authorization: `Bearer ${apiKey.trim()}`,
-    "Content-Type": "application/json",
-  };
-}
+    this.headers = {
+      Authorization: `Bearer ${apiKey.trim()}`,
+      "Content-Type": "application/json",
     };
   }
 
@@ -28,7 +26,11 @@ class MinestratorClient {
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      const message = data?.error?.message ?? JSON.stringify(data);
+      const message =
+        data?.api?.error ??
+        data?.error?.message ??
+        `Erreur Minestrator (${response.status})`;
+
       throw new MinestratorError(message, response.status);
     }
 
